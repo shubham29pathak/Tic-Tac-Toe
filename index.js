@@ -6,6 +6,7 @@ const conclusion_window = document.querySelector(".conclusion");
 const overlay = document.querySelector(".overlay");
 const names=document.querySelector(".player-form");
 const nameButton=document.querySelector("#player_info");
+var audio = document.createElement("audio");
 
 let counter00;
 let player1;
@@ -48,6 +49,9 @@ nameButton.addEventListener("click",nameFeeding);
 let answer;
 
 function initGame() {
+    audio.src = "./assets/starting.wav";
+  audio.autoplay = true;
+  document.body.appendChild(audio);
     currentPlayer = `${player1}`;
     currentPlayerStamp = `${player1}`[0];
     answer = "";
@@ -156,11 +160,16 @@ newGameBtn.addEventListener("click", newgame);
 
 const open_conclusion_window = () => {
   conclusion_window.classList.add("active");
+  audio.src = "./assets/clapping.wav";
+  audio.autoplay = true;
+  audio.loop = true;
+  document.body.appendChild(audio);
   overlay.classList.add("overlayactive");
 };
 
 
 const close_conclusion_window = () => {
+  document.body.removeChild(audio);
   conclusion_window.classList.remove("active");
   overlay.classList.remove("overlayactive");
 };
