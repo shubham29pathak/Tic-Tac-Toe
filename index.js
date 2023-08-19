@@ -38,6 +38,9 @@ function nameFeeding(){
     player2=lname.value.toUpperCase();
     if(player1!="" && player2!=""){
         names.classList.remove("active");
+        audio.src = "./assets/starting.wav";
+        audio.autoplay = true;
+        document.body.appendChild(audio);
         initGame();
     }
 }
@@ -49,9 +52,6 @@ nameButton.addEventListener("click",nameFeeding);
 let answer;
 
 function initGame() {
-    audio.src = "./assets/starting.wav";
-  audio.autoplay = true;
-  document.body.appendChild(audio);
     currentPlayer = `${player1}`;
     currentPlayerStamp = `${player1}`[0];
     answer = "";
@@ -66,6 +66,7 @@ function initGame() {
     });
     newGameBtn.classList.remove("active");
     gameInfo.innerText = `Current Player - ${currentPlayer}`;
+    setTimeout(function(){document.body.removeChild(audio)},5000);
 }
 
 
@@ -165,6 +166,7 @@ const open_conclusion_window = () => {
   audio.loop = true;
   document.body.appendChild(audio);
   overlay.classList.add("overlayactive");
+  setTimeout(function(){document.body.removeChild(audio)},10000);
 };
 
 
