@@ -14,6 +14,7 @@ let player2;
 let currentPlayer;
 let currentPlayerStamp;
 let gameGrid;
+let same_name=0;
 
 const winningPositions = [
     [0,1,2],
@@ -35,10 +36,15 @@ function newgame(){
 
 function nameFeeding(){
     player1=fname.value.toUpperCase();
-    player2=lname.value.toUpperCase();
+    if(fname[0]!=lname[0]){
+        player2=lname.value.toUpperCase();
+        }
+    else{
+        player2=lname.value.toLowerCase();
+    }
     if(player1!="" && player2!=""){
         names.classList.remove("active");
-        audio.src = "./assets/starting.wav";
+        audio.src = "./assets/welcome.mp3";
         audio.autoplay = true;
         document.body.appendChild(audio);
         initGame();
@@ -161,10 +167,9 @@ newGameBtn.addEventListener("click", newgame);
 
 const open_conclusion_window = () => {
   conclusion_window.classList.add("active");
-  audio.src = "./assets/clapping.wav";
-  audio.autoplay = true;
-  audio.loop = true;
   document.body.appendChild(audio);
+  audio.src = "./assets/clapping.mp3";
+  audio.autoplay = true;
   overlay.classList.add("overlayactive");
   setTimeout(function(){document.body.removeChild(audio)},10000);
 };
