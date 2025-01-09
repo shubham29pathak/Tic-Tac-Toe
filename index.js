@@ -44,9 +44,6 @@ function nameFeeding(){
     }
     if(player1!="" && player2!=""){
         names.classList.remove("active");
-        audio.src = "./assets/welcome.mp3";
-        audio.autoplay = true;
-        document.body.appendChild(audio);
         initGame();
     }
 }
@@ -167,9 +164,6 @@ newGameBtn.addEventListener("click", newgame);
 
 const open_conclusion_window = () => {
   conclusion_window.classList.add("active");
-  document.body.appendChild(audio);
-  audio.src = "./assets/clapping.mp3";
-  audio.autoplay = true;
   overlay.classList.add("overlayactive");
   setTimeout(function(){document.body.removeChild(audio)},10000);
 };
